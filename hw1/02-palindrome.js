@@ -1,9 +1,6 @@
 const elem = document.querySelector("input");
 const outputDiv = document.querySelector("div:last-child");
 
-outputDiv.innerHTML =
-  '<p class="text-danger">Is this a palindrome?</p>';
-
 function handleInput() {
   const input = Number(elem.value);
 
