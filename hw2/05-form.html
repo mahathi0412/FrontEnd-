@@ -1,61 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>05 - Form</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    />
+    <script defer src="05-form.js"></script>
+  </head>
+  <body class="bg-dark">
+    <main class="mt-3 d-flex justify-content-center">
+      <form class="form bg-white p-4 rounded" action="">
+        <h1 class="title text-center mb-4">Registration Form</h1>
+        <div class="form-group">
+          <label class="input-label" for="uname">Name: </label>
+          <input
+            class="form-control input-element"
+            type="text"
+            id="uname"
+            name="uname"
+          />
+        </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>05 - Form</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
-  <script defer src="05-form.js"></script>
-</head>
-<body class="bg-dark">
-<main class="d-flex mt-3 justify-content-center">
-  <form>
-    <h1>Exercise 05 - Form</h1>
-    <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input type="text" class="form-control" id="name" name="name" required>
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" name="email" required>
-    </div>
-    <div class="mb-3">
-      <label for="registrationStatus" class="form-label">Registration Status</label>
-      <select class="form-select" id="registrationStatus" name="registrationStatus" required>
-        <option value="not-chosen" selected>Choose an Option</option>
-        <option value="registered">Registered</option>
-        <option value="notRegistered">Not Registered</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="Course" class="form-label">Have you taken any of the following course?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="algo" name="Course" value="algo">
-        <label class="form-check-label" for="algo">
-          Algorithm Design and Analysis
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="web" name="Course" value="web">
-        <label class="form-check-label" for="web">
-          Full Stack Web Development
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="mhealth" name="Course" value="mhealth">
-        <label class="form-check-label" for="mhealth">
-          Mobile Health
-        </label>
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="anythingElse" class="form-label">Anything else?</label>
-      <textarea class="form-control" id="anythingElse" name="anythingElse" rows="3"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</main>
-</body>
+        <div class="form-group">
+          <label class="input-label" for="email">Email: </label>
+          <input
+            class="form-control input-element"
+            type="email"
+            id="email"
+            name="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="input-label" for="registration"
+            >Registration Status:
+          </label>
+          <select
+            class="form-control input-element"
+            id="registration"
+            name="registration"
+          >
+            <option value="" selected disabled>Choose an option</option>
+            <option value="registered">Registered</option>
+          </select>
+        </div>
+
+        <fieldset class="form-group">
+          <legend class="input-label">
+            Have you taken any full time course?
+          </legend>
+          <div>
+            <input type="checkbox" name="course" id="web" />
+            <label for="web">Web Development</label>
+          </div>
+          <div>
+            <input type="checkbox" name="course" id="algo" />
+            <label for="algo">Algorithms</label>
+          </div>
+          <div>
+            <input type="checkbox" name="course" id="mhealth" />
+            <label for="mhealth">Mobile Health</label>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label class="input-label" for="comments">Anything else?</label>
+          <textarea
+            class="form-control input-element"
+            id="comments"
+            name="comments"
+            rows="3"
+          ></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+      </form>
+    </main>
+  </body>
 </html>
