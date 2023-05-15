@@ -26,27 +26,53 @@ const borderColors = [
   'rgba(78, 52, 199, 1)',
 ];
 
-// url for the Thrones API
 const url = 'https://thronesapi.com/api/v2/Characters';
 
-const renderChart = () => {
-  const donutChart = document.querySelector('.donut-chart');
-
-  new Chart(donutChart, {
-    type: 'doughnut',
-    data: {
-      labels: ['label', 'label', 'label', 'label'],
+const fetchCharacters = async () => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const characters = data.filter((char) => char.family !== null);
+    const families = {};
+    for (let i = 0; i < characters.length; i++) {
+      const family = cleanfamilyName(characters[i].family);
+      if (families[family]) {
+        families[family]++;
+      } else {
+        families[family] = 1;
+      }
+    }
+    const chartData = {
+      labels: Object.keys(families),
       datasets: [
         {
-          label: 'My First Dataset',
-          data: [1, 12, 33, 5],
-          backgroundColor: backgroundColors,
-          borderColor: borderColors,
+          label: 'Number of Characters',
+          data: Object.values(families),
+          backgroundColor: backgroundColors.slice(0, Object.keys(families).length),
+          borderColor: borderColors.slice(0, Object.keys(families).length),
           borderWidth: 1,
         },
       ],
-    },
-  });
+    };
+    const donutChart = document.querySelector('.donut-chart');
+    new Chart(donutChart, {
+      type: 'doughnut',
+      data: chartData,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-renderChart();
+function cleanfamilyName(family) {
+  family = family.replace(/House/, "").trim();
+  if (family.includes("Lanister")) return "Lannister";
+  else if (family.includes("None")) return "Unknown";
+  else if (family.includes("Unkown")) return "Unknown";
+  else if (family.includes("Targaryan")) return "Targaryen";
+  else if (family.includes("Targaryn")) return "Targaryen";
+  else if (family === "") return "Unknown";
+  return family;
+}
+
+fetchCharacters();
