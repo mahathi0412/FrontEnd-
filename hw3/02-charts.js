@@ -35,7 +35,7 @@ const fetchCharacters = async () => {
     const characters = data.filter((char) => char.family !== null);
     const families = {};
     for (let i = 0; i < characters.length; i++) {
-      const family = cleanfamilyName(characters[i].family);
+      const family = characters[i].family;
       if (families[family]) {
         families[family]++;
       } else {
@@ -63,16 +63,5 @@ const fetchCharacters = async () => {
     console.error(error);
   }
 };
-
-function cleanfamilyName(family) {
-  family = family.replace(/House/, "").trim();
-  if (family.includes("Lanister")) return "Lannister";
-  else if (family.includes("None")) return "Unknown";
-  else if (family.includes("Unkown")) return "Unknown";
-  else if (family.includes("Targaryan")) return "Targaryen";
-  else if (family.includes("Targaryn")) return "Targaryen";
-  else if (family === "") return "Unknown";
-  return family;
-}
 
 fetchCharacters();
